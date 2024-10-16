@@ -13,6 +13,8 @@ class Product(models.Model):
     # name = models.CharField("brand_name", max_length=100)
 
 class Brand(models.Model):
+    # You can explicitly define your primary key like this. See example below.
+    # brand_id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100)
 
     def __str__(self):
