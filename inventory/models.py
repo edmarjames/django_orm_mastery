@@ -22,7 +22,7 @@ class Product(models.Model):
     # To set a verbose name for a field you can do this
     # name = models.CharField("brand_name", max_length=100)
 
-    # To create a many to many field you can do this, create a many to many field will create a link table
+    # To create a many to many field you can do this, creating a many to many field will create a link table
     # category = models.ManyToManyField(Category)
 
     def __str__(self):
