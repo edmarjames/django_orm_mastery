@@ -44,6 +44,15 @@ def create_product(request):
                     category = category
                 )
                 message = "Product successfully created!"
+                # Alternative approach using save()
+                # product = Product(
+                #     name = form_data["name"],
+                #     price = form_data["price"],
+                #     url = form_data["url"],
+                #     quantity = form_data["quantity"],
+                #     category = category
+                # )
+                # product.save()
             except Category.DoesNotExist:
                 message = "Category does not exist"
             except Exception as e:
