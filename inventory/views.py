@@ -53,6 +53,7 @@ def create_product(request):
                 #     category = category
                 # )
                 # product.save()
+                # note: save() method can also be used when updating a record
             except Category.DoesNotExist:
                 message = "Category does not exist"
             except Exception as e:
