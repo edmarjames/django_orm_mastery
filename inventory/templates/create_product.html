@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <form action="{% url 'inventory:create_product' %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ form.name.value }}">
+                {{ form.name.errors }}
+            </div>
+            <div>
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" value="{{ form.price.value }}">
+                {{ form.price.errors }}
+            </div>
+            <div>
+                <label for="url">URL:</label>
+                <input type="text" id="url" name="url" value="{{ form.url.value }}">
+                {{ form.url.errors }}
+            </div>
+            <div>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="{{ form.quantity.value }}">
+                {{ form.quantity.errors }}
+            </div>
+            <div>
+                <label for="categories">Categories: </label>
+                <select name="categories" id="categories">
+                    {% for cat in all_category %}
+                        <option value="{{ cat.name }}" {% if form.categories.value == cat.name %}selected{% endif %}>{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+                {{ form.categories.errors }}
+            </div>
+            <div>
+                <input type="submit" value="Save">
+            </div>
+        </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </body>
+</html>
