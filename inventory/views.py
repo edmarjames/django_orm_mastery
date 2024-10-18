@@ -23,6 +23,7 @@ def get_categories(request):
     return HttpResponse(all_category.query)
 
 def create_product(request):
+    # create() is often use together with a form
 
     all_category = Category.objects.all()
     message = ""
