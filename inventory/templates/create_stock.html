@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% block content %}
+    <form action="{% url 'inventory:create_stock' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="units">Units:</label>
+            <input type="number" id="units" name="units" value="{{ form.units.value }}">
+            {{ form.units.errors }}
+        </div>
+        <div>
+            <label for="product">Product: </label>
+            <select name="product" id="product">
+                {% for prod in all_product %}
+                    <option value="{{ prod.name }}" {% if form.product.value == prod.name %}selected{% endif %}>{{ prod.name }}</option>
+                {% endfor %}
+            </select>
+            {{ form.product.errors }}
+        </div>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    {% if all_stock %}
+        <h4>All Stocks</h4>
+        <ul>
+            {% for stock in all_stock %}
+                <li>{{ stock.product.name }} - {{ stock.units }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

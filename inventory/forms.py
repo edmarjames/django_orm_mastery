@@ -6,3 +6,7 @@ class CreateProductForm(forms.Form):
     url = forms.SlugField(label="url")
     quantity = forms.IntegerField(label="quantity", max_value=50)
     categories = forms.CharField(label="categories", max_length=255)
+
+class CreateStockForm(forms.Form):
+    units = forms.IntegerField(label="units")
+    product = forms.CharField(label="product", max_length=100)

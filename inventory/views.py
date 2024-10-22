@@ -4,8 +4,12 @@ from django.http import HttpResponse
 from .models import (
     Category,
     Product,
+    Stock,
 )
-from .forms import CreateProductForm
+from .forms import (
+    CreateProductForm,
+    CreateStockForm,
+)
 
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
@@ -70,3 +74,41 @@ def create_product(request):
     }
 
     return render(request, "create_product.html", context)
+
+def create_stock(request):
+
+    all_product = Product.objects.all()
+    all_stock = Stock.objects.all()
+    message = ""
+
+    if request.method == "POST":
+        form = CreateStockForm(request.POST)
+        print(form.is_valid)
+
+        if form.is_valid() == True:
+            try:
+                product = Product.objects.get(name=form.cleaned_data["product"])
+
+                Stock.objects.create(
+                    units = form.cleaned_data["units"],
+                    product = product
+                )
+                message = "Stock created successfully!"
+            except Product.DoesNotExist:
+                message = "Product does not exist"
+            except Exception as e:
+                message = f"An error occurred {str(e)}"
+        else:
+            # print(form)
+            message = "Form is invalid. Please correct the errors."
+    else:
+        form = CreateStockForm()
+
+    context = {
+        "form": form,
+        "all_product": all_product,
+        "all_stock": all_stock,
+        "message": message
+    }
+
+    return render(request, "create_stock.html", context)
