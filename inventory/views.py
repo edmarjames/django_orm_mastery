@@ -83,7 +83,6 @@ def create_stock(request):
 
     if request.method == "POST":
         form = CreateStockForm(request.POST)
-        print(form.is_valid)
 
         if form.is_valid() == True:
             try:
@@ -99,7 +98,6 @@ def create_stock(request):
             except Exception as e:
                 message = f"An error occurred {str(e)}"
         else:
-            # print(form)
             message = "Form is invalid. Please correct the errors."
     else:
         form = CreateStockForm()
