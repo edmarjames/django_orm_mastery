@@ -1,20 +1,12 @@
-from django.shortcuts import render
 from django.http import HttpResponse
-
-from .models import (
-    Category,
-    Product,
-    Stock,
-)
-from .forms import (
-    CreateProductForm,
-    CreateStockForm,
-)
-
+from django.shortcuts import render
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
 from pygments.lexers import MySqlLexer
 from sqlparse import format
+
+from .forms import CreateProductForm, CreateStockForm
+from .models import Category, Product, Stock
 
 
 # Create your views here.
