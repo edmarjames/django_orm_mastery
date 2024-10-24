@@ -102,3 +102,12 @@ def create_stock(request):
     }
 
     return render(request, "create_stock.html", context)
+
+def reverse_query(request):
+    # Using "_set" to get related products to cat1 if the related name is not set on the field.
+
+    cat1 = Category.objects.get(pk=1)
+    related_products = cat1.product_set.all()
+    print(related_products)
+
+    return HttpResponse(related_products)
