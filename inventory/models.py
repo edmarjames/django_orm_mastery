@@ -1,4 +1,5 @@
 from django.db import models
+from .fields import ProductDescriptionField
 
 # Create your models here.
 class Category(models.Model):
@@ -19,6 +20,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     quantity = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    description = ProductDescriptionField()
     # To set a verbose name for a field you can do this
     # name = models.CharField("brand_name", max_length=100)
 
